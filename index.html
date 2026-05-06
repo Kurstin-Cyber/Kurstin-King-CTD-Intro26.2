@@ -28,7 +28,21 @@
    <img src="images/me.jpg" alt="A professional portrait of Kurstin King" id="profile-photo">
    <section id="About">
    <h2 class="about">About</h2>
-   <p class="about-me">I am a sociologist with experience in ethnographic research, who is now on the software engineering path. Until I switch to Data Engineering, because I love to make dashboards and visualizations.</p>
+   <p class="about-me">I am a sociologist with experience in ethnographic research, who is now on the software engineering path. Until I switch to Data Engineering, because I love to make dashboards and visualizations. Below is a video that I am currently watching on data engineering from my friends at freecodecamp.org!</p>
+   <div class="video-container">
+    <iframe 
+    width="560" 
+    height="315" 
+    src="https://www.youtube.com/embed/PHsC_t0j1dU?si=p0QUrV99IKiplVwp" 
+    frameborder="0" 
+    allow="accelerometer; 
+    autoplay; 
+    clipboard-write;
+    encrypted-media;
+    gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin" 
+    allowfullscreen></iframe>
+   </div>
    </section>
    <section id="Experience">
    <h2 class="experience">Experience</h2>
@@ -64,12 +78,28 @@
     <li><a href="https://www.linkedin.com/in/kurstin-king-59028448" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a></li>
    </ul>
    </div>
-   <div class="video-container">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/PHsC_t0j1dU?si=Mo0tCl2-2LFKCHjL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-   </div>
 </section>
 <footer>
     <p><small>&copy; 2026 Kurstin King. All Rights Reserved.</small></p>
 </footer>
+<h3>Total Visitors: <span id="visit-count">Loading...</span></h3>
+
+<script>
+    const workspace = "kurstin-kings-team-4026";
+    const counterName = "homepage";
+
+    async function updateCounter() {
+        try {
+            const response = await fetch(`https://api.counterapi.dev/v1/${workspace}/${counterName}/up`);
+            const data = await response.json();
+            document.getElementById('visit-count').innerText = data.count;
+        } catch (error) {
+            console.error("Counter failed:", error);
+            document.getElementById('visit-count').innerText = "Unavailable";
+            
+        }
+    }
+    updateCounter();
+</script>
 </body>
 </html>
