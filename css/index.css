@@ -1,0 +1,170 @@
+
+body {
+    background-color: #f0f4f8;
+    padding: 40px;
+    margin: 0;
+    font-family: "Open Sans", sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+.heading {
+    font-family: "Tangerine", cursive;
+    font-size: 48px;
+   
+}
+
+.Experience {
+    font-family: "Tangerine", cursive;
+    font-size: 36px;
+   
+}
+
+.about {
+    font-family: "Tangerine", cursive;
+    font-size: 36px;
+
+}
+
+.connect {
+    font-family: "Tangerine", cursive;
+    font-size: 36px;
+    
+}
+.skills {
+    font-family: "Tangerine", cursive;
+    font-size: 36px;
+
+}
+
+.projects {
+    font-family: "Tangerine", cursive;
+    font-size: 36px;
+
+}
+
+h1 { 
+    font-family: "Tangerine", cursive;
+    font-size: 80px;
+    font-weight: 700;
+    color: #2c3e50;
+    text-align: center;
+    margin-top: 50px;
+}
+
+h2 {
+    font-family: "Open Sans", sans-serif;
+    font-size: 32px;
+    font-weight: 600;
+    color: #e67e22;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+
+
+p {
+    line-height: 1.8;
+    letter-spacing: 0.5px;
+}
+
+section {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding: 20px;
+    border: 2px solid #000080;
+}
+
+#Connect {
+    display: flex !important;
+    justify-content: center;
+    gap: 60px;
+    align-items: center;
+    padding: 40px 0;
+}
+    
+
+#Connect a {
+    margin:0;
+    display: inline-block;
+}
+
+#Connect a:hover {
+    background-color: #e67e22;
+    cursor: pointer;
+}
+
+#Connect ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#Connect i {
+    font-size: 32px;
+    vertical-align: middle;
+}
+
+#profile-photo {
+    width: 250px;
+    height: auto;
+    border-radius: 10px;
+    border: 5px solid #f0f0f0;
+    display: block;
+    margin: 20px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#Experience {
+    list-style-type: none;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+#Experience h3 {
+    margin: 0;
+    color: #2c3e50;
+    font-family: "Open Sans", sans-serif;
+}
+
+#Experience p {
+    margin: 5px 0;
+    color: #666;
+}
+
+#Experience ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+#Experience li {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #2c3e50;
+    width: 100%;
+    padding: 15px 0;
+    
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: underline;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+}
+
+nav a:hover {
+    color: #e67e22
+};
