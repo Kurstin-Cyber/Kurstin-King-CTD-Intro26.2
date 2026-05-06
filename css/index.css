@@ -71,7 +71,7 @@ section {
     margin-top: 40px;
     margin-bottom: 40px;
     padding: 20px;
-    border: 2px solid #000080;
+    
 }
 
 #Connect {
@@ -165,6 +165,33 @@ nav a {
     font-weight: 600;
 }
 
+
 nav a:hover {
     color: #e67e22
 };
+
+#visits {
+    background: #e67e22;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.video-container iframe {
+    position:absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
