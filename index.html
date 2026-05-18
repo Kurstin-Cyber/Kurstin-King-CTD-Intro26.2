@@ -13,8 +13,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     
-
-    <script src="index.js" type="module"></script>
 </head>
 <body>
     <nav>
@@ -57,9 +55,7 @@
    <section id="Skills">
     <h2 class="skills"> Skills</h2>
     <ul>
-        <li></li>
-        <li></li>
-        <li></li>    
+           
     </ul>
    </section>
    <section id="Projects">
@@ -79,27 +75,6 @@
    </ul>
    </div>
 </section>
-<footer>
-    <p><small>&copy; 2026 Kurstin King. All Rights Reserved.</small></p>
-</footer>
-<h3>Total Visitors: <span id="visit-count">Loading...</span></h3>
-
-<script>
-    const workspace = "kurstin-kings-team-4026";
-    const counterName = "homepage";
-
-    async function updateCounter() {
-        try {
-            const response = await fetch(`https://api.counterapi.dev/v1/${workspace}/${counterName}/up`);
-            const data = await response.json();
-            document.getElementById('visit-count').innerText = data.count;
-        } catch (error) {
-            console.error("Counter failed:", error);
-            document.getElementById('visit-count').innerText = "Unavailable";
-            
-        }
-    }
-    updateCounter();
-</script>
+    <script src="js/index.js"></script>
 </body>
 </html>

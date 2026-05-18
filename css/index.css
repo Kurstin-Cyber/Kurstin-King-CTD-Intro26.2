@@ -194,3 +194,10 @@ nav a:hover {
     word-spacing: -1px;
     text-align: center;
 }
+
+#Skills {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+   
+}
