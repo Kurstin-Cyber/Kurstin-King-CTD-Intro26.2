@@ -26,3 +26,82 @@ for (let i = 0; i < skills.length; i++) {
     skill.innerText = skills[i];
     skillsList.appendChild(skill);
 }
+
+const messageForm = document.querySelector('[name="leave_message"]');
+
+messageForm.addEventListener('submit', event => {
+    event.preventDefault();
+    const usersName = event.target.usersName.value;
+    const usersEmail= event.target.usersEmail.value;
+    const usersMessage= event.target.usersMessage.value;
+    
+    console.log(usersName, usersEmail, usersMessage);
+
+    const messageSection = document.getElementById("messages");
+    const messageList = messageSection.querySelector('ul');
+
+    
+    const newMessage = document.createElement("li");
+
+    newMessage.innerHTML= `<a href= "mailto:${usersEmail}"> ${usersName}</a> : <span class="message-text">${usersMessage}</span>`;
+
+
+    const editButton = document.createElement("button");
+    editButton.innerText = "edit";
+    editButton.type = "button";
+    editButton.addEventListener('click', () => {
+        const messageSpan = newMessage.querySelector('.message-text');
+        const currentText = messageSpan.textContent;
+        const updatedText = prompt("Edit your message:", currentText);
+
+        if(updatedText !== null && updatedText.trim() !== "") {
+            messageSpan.textContent = updatedText;
+        }
+    });
+    newMessage.appendChild(editButton);
+    
+    const removeButton = document.createElement("button");
+    removeButton.innerText = "remove";
+    removeButton.type = "button";
+
+    removeButton.addEventListener('click', event => {
+        const entry = removeButton.parentNode;
+        entry.remove();
+
+        toggleMessagesSection();
+        
+    });
+    
+    newMessage.appendChild(removeButton);
+    messageList.appendChild(newMessage);
+    messageForm.reset();
+
+   toggleMessagesSection();
+    
+   
+
+});
+
+
+ function toggleMessagesSection() { 
+        const messageSection = document.getElementById("messages");
+        const heading = messageSection.querySelector('h2');
+        if(!messageSection) return;
+
+        const messageList = messageSection.querySelector('ul');
+
+        if(!messageList || messageList.children.length === 0){
+            messageSection.style.display = "none";
+            if(heading) heading.style.display = 'none';
+        } else {
+            messageSection.style.display = "flex";
+            if(heading) heading.style.display = "block";
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", event =>{
+          toggleMessagesSection();
+    });
+  
+    
+    
