@@ -21,6 +21,7 @@
         <a href="#Skills">Skills</a>
         <a href="#Projects">Projects</a>
         <a href="#Connect">Connect</a>
+        <a href="#leaveMessage">Leave a Message</a>
     </nav>
    <h1 class="heading">Kurstin King</h1>
    <img src="images/me.jpg" alt="A professional portrait of Kurstin King" id="profile-photo">
@@ -73,8 +74,31 @@
     <li><a href="https://github.com/Kurstin-Cyber/Kurstin-King-CTD-Intro26.2" target="blank" aria-label="GitHub"><i class="fab fa-github"></i></a></li> 
     <li><a href="https://www.linkedin.com/in/kurstin-king-59028448" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a></li>
    </ul>
-   </div>
+   </div> 
 </section>
+    <section id="leaveMessage">
+        <h2>
+            Leave a Message
+        </h2>
+        <form name="leave_message">
+            <label for="usersName">Username:</label>
+            <input type="text" id="usersName" name="usersName" required="true">
+            <br>
+            <label for="usersEmail">Email:</label>
+            <input type="email" id="usersEmail" name="usersEmail" required="true">
+            <br>
+            <label for="usersMessage">Message:</label>
+            <textarea name="usersMessage" id="usersMessage" required="true"></textarea>
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+    <section id="messages">
+        <h2>
+            Messages
+        </h2>
+        <ul></ul>
+    </section>
     <script src="js/index.js"></script>
 </body>
 </html>
