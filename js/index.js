@@ -9,11 +9,11 @@ const thisYear = today.getFullYear();
 
 const copyright = document.createElement("p");
 
-const footer1 = document.querySelector("footer");
+
 
 copyright.innerHTML = `&copy; Kurstin King ${thisYear}`
 
-footer1.appendChild(copyright);
+footer.appendChild(copyright);
 
 
 const skills = ["JavaScript", "HTML", "CSS", "GitHub", "VS Code"];
@@ -126,8 +126,15 @@ messageForm.addEventListener('submit', event => {
     })
 
     .catch(error => {
+        console.log('Catch block successfully fired!');
+        const projectSection = document.getElementById('Projects');
         
-        console.error('Repository not found', error);
+        const errorMessage = document.createElement('p');
+        errorMessage.innerText = 'Sorry that repository is not available at this time. Please try again later.';
+        errorMessage.style.color = '#e67e22';
+        errorMessage.style.textAlign = 'center';
+        projectSection.appendChild(errorMessage);
+        
     });
 
 
