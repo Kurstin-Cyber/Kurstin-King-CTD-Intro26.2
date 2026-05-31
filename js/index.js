@@ -102,6 +102,33 @@ messageForm.addEventListener('submit', event => {
     document.addEventListener("DOMContentLoaded", event =>{
           toggleMessagesSection();
     });
-  
-    
+
+
+ fetch('https://api.github.com/users/Kurstin-Cyber/repos')
+
+    .then(response => {
+        if(!response.ok) {
+            throw new Error('Network response was not detected');
+        }
+        return response.json();
+    })
+
+    .then(repositories => {
+        const projectSection = document.getElementById('Projects');
+        const projectList = projectSection.querySelector('ul');
+
+        for(let i = 0;  i < repositories.length; i++){
+        const project = document.createElement('li');
+        project.innerText = repositories[i].name;
+        projectList.appendChild(project);
+    }
+        console.log(repositories);
+    })
+
+    .catch(error => {
+        
+        console.error('Repository not found', error);
+    });
+
+
     
