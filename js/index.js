@@ -9,11 +9,11 @@ const thisYear = today.getFullYear();
 
 const copyright = document.createElement("p");
 
-const footer1 = document.querySelector("footer");
+
 
 copyright.innerHTML = `&copy; Kurstin King ${thisYear}`
 
-footer1.appendChild(copyright);
+footer.appendChild(copyright);
 
 
 const skills = ["JavaScript", "HTML", "CSS", "GitHub", "VS Code"];
@@ -102,6 +102,40 @@ messageForm.addEventListener('submit', event => {
     document.addEventListener("DOMContentLoaded", event =>{
           toggleMessagesSection();
     });
-  
-    
+
+
+ fetch('https://api.github.com/users/Kurstin-Cyber/repos')
+
+    .then(response => {
+        if(!response.ok) {
+            throw new Error('Network response was not detected');
+        }
+        return response.json();
+    })
+
+    .then(repositories => {
+        const projectSection = document.getElementById('Projects');
+        const projectList = projectSection.querySelector('ul');
+
+        for(let i = 0;  i < repositories.length; i++){
+        const project = document.createElement('li');
+        project.innerText = repositories[i].name;
+        projectList.appendChild(project);
+    }
+        console.log(repositories);
+    })
+
+    .catch(error => {
+        console.log('Catch block successfully fired!');
+        const projectSection = document.getElementById('Projects');
+        
+        const errorMessage = document.createElement('p');
+        errorMessage.innerText = 'Sorry that repository is not available at this time. Please try again later.';
+        errorMessage.style.color = '#e67e22';
+        errorMessage.style.textAlign = 'center';
+        projectSection.appendChild(errorMessage);
+        
+    });
+
+
     
