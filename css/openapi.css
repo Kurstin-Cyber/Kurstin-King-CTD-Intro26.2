@@ -1,0 +1,58 @@
+body {
+    background-color: pink;
+    padding: 40px;
+    margin: 0;
+    font-family: "Open Sans", sans-serif;
+    color:#333;
+    line-height: 1.6;
+}
+
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: purple;
+    width: 100%;
+    padding: 15px 0;
+}
+
+nav a {
+    font-size: 1.2rem;
+    text-decoration: underline;
+    color: white;
+}
+.weather-display-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+
+#tempDisplay, #windDisplay {
+    margin-top: 20px;
+    padding: 15px;
+    min-width:250px;
+    max-width: 320px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3 ease-in-out;
+}
+
+#tempDisplay {
+    border-top: 5px solid #ff6b6b
+}
+
+#windDisplay {
+    border-top: 5px solid #4dadf7;
+}
+#tempDisplay:empty, #windDisplay:empty {
+    display: none;
+}
