@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css\openapi.css">
+    <title>Open API Webpage</title>
+    
+</head>
+<body>
+   <nav>
+    <a href="index.html">Kurstin's Portfolio Page</a>
+   </nav>
+   <section id="about">
+    <h1>Welcome to my Weather App</h1>
+    <p>The purpose of this page is to show the functionality of an Application Programming Interface(API). I have selected the temperature and windspeed data from <a href="https://www.open-meteo.com"  aria-label="Open-Meteo">Open-Meteo</a>.When users enter the name of a city, they can see the current temperature and windspeed by clicking the respective buttons.</p>
+   </section>
+
+
+  <form id="weatherForm">
+    <label for="cityInput">Enter City</label>
+    <input type="text" id="cityInput" placeholder="e.g., Brooklyn, Bankok...">
+
+    <button id="tempButton">Get Temperature</button>
+    <button id="windButton">Get Windspeed</button>
+  </form>
+  <div id="tempDisplay"></div>
+  <div id="windDisplay"></div>
+   <script src="js\openapi.js" defer></script>
+</body>
+</html>
