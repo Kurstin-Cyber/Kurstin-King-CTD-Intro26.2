@@ -1,26 +1,85 @@
 body {
-    background-color: pink;
-    padding: 40px;
+    
+    background-image: url('../images/mick-haupt-OVX3oiL5PsE-unsplash.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 0;
     margin: 0;
-    font-family: "Open Sans", sans-serif;
-    color:#333;
+    font-family: "DM Sans", sans-serif;
+    color:black;
     line-height: 1.6;
+
 }
 
+.content-card {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 600px;
+    margin: 40px auto;
+    color: #ffffff;
+}
 
+.content-card a {
+    color: #ffb6c1;
+    text-decoration: underline;
+    transition: color 0.2s ease-in-out;
+}
+
+.content-card a:hover {
+    color: #ffffff;
+}
+
+ .back-link-container {
+    padding: 20px 0 0 20px;
+    
+}
+
+.back-link-container button {
+    background-color: rgba(0, 0, 0, 0.6);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    transition: background-color 0.2s ease-in-out;
+}
+
+.back-link-container a.portfolio-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight:500;
+}
+
+.back-link-container button:hover a.portfolio {
+    color: #ffb6c1;
+}
 nav {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background-color: purple;
-    width: 100%;
-    padding: 15px 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(5px);
+    max-width: 660px;
+    margin: 0 auto;
+    border-radius: 12px;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0, 4px 15px rgba(0, 0, 0, 0.4);
 }
 
 nav a {
-    font-size: 1.2rem;
-    text-decoration: underline;
+    font-size: clamp(1rem, 4vw, 1.5rem);
+    font-weight: 600;
+    text-decoration: none;
     color: white;
+    letter-spacing: 0.5px;
+    transition: color 0.2s ease-in-out;
+}
+
+nav a:hover {
+    color: #ffb6c1;
 }
 .weather-display-container {
     display: flex;
@@ -30,7 +89,59 @@ nav a {
     flex-wrap: wrap;
 }
 
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+    max-width: 400px;
+}
 
+.form-container label {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.form-container input[type="text"] {
+    padding: 12px 16px;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+}
+
+.form-container button {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    color: #ffffff;
+    background-color: #3a0066;
+    transition: all 0.2 ease-in-out;
+}
+
+.form-container button:hover {
+    background-color: #52008f;
+    transform: translateY(-2px);
+}
+
+
+.form-container button:active {
+    transform: translateY(0);
+}
 #tempDisplay, #windDisplay {
     margin-top: 20px;
     padding: 15px;
@@ -43,7 +154,7 @@ nav a {
     color: #333;
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3 ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 #tempDisplay {
@@ -55,4 +166,20 @@ nav a {
 }
 #tempDisplay:empty, #windDisplay:empty {
     display: none;
+}
+
+footer {
+    color: white;
+    text-align: center;
+    margin-top: 60px;
+    padding-bottom: 25px;
+}
+
+footer p {
+    display: inline-block;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 6px 16px;
+    border-radius: 20px; 
+    backdrop-filter: blur(4px);
 }

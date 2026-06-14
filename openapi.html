@@ -3,29 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css\openapi.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/openapi.css">
     <title>Open API Webpage</title>
     
 </head>
 <body>
-   <nav>
-    <a href="index.html">Kurstin's Portfolio Page</a>
-   </nav>
+  <div class="back-link-container"><button type="button"><a href="index.html" class="portfolio-link">&larr;Back to Kurstin's Portfolio</a></button></div>
+   
+   <div class="content-card">
    <section id="about">
     <h1>Welcome to my Weather App</h1>
-    <p>The purpose of this page is to show the functionality of an Application Programming Interface(API). I have selected the temperature and windspeed data from <a href="https://www.open-meteo.com"  aria-label="Open-Meteo">Open-Meteo</a>.When users enter the name of a city, they can see the current temperature and windspeed by clicking the respective buttons.</p>
+    <p>The purpose of this page is to show the functionality of an Application Programming Interface(API). I have selected the temperature and windspeed data from <a href="https://www.open-meteo.com"  aria-label="Open-Meteo">Open-Meteo</a>. When users enter the name of a city, they can see the current temperature and windspeed by clicking the respective buttons.</p>
    </section>
-
-
+   
   <form id="weatherForm">
     <label for="cityInput">Enter City</label>
     <input type="text" id="cityInput" placeholder="e.g., Brooklyn, Bankok...">
 
-    <button id="tempButton">Get Temperature</button>
-    <button id="windButton">Get Windspeed</button>
+    <div class="button-group">
+    <button type="button" id="tempButton">Get Temperature</button>
+    <button type="button" id="windButton">Get Windspeed</button>
+    </div>
   </form>
+  <div class="weather-display-container">
   <div id="tempDisplay"></div>
   <div id="windDisplay"></div>
-   <script src="js\openapi.js" defer></script>
+  </div>
+  </div>
+   <script src="js/openapi.js" defer></script>
 </body>
 </html>

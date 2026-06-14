@@ -16,19 +16,25 @@
 </head>
 <body>
     <nav>
-        <a href="#About">About</a>
-        <a href="openapi.html">Weather API </a>
-        <a href="#Experience">Experience</a>
-        <a href="#Skills">Skills</a>
-        <a href="#Projects">Projects</a>
-        <a href="#Connect">Connect</a>
-        <a href="#leaveMessage">Leave a Message</a>
+        <button id="menuToggle" aria-label="Toggle navigation menu"><i class="fas fa-bars"></i>
+        </button>
+
+        <ul id="navLinks">
+       <li><a href="#About">About</a></li>
+       <li><a href="openapi.html">Open API </a></li> 
+        <li><a href="#Experience">Experience</a></li> 
+        <li><a href="#Skills">Skills</a></li> 
+        <li><a href="#Projects">Projects</a></li> 
+        <li><a href="#Connect">Connect</a></li> 
+        <li><a href="#leaveMessage">Leave a Message</a></li> 
+       <li> <button id="darkModeToggle" aria-label="Toggle dark mode">Dark Mode</button></li>
+        </ul>
     </nav>
    <h1 class="heading">Kurstin King</h1>
    <img src="images/me.jpg" alt="A professional portrait of Kurstin King" id="profile-photo">
    <section id="About">
    <h2 class="about">About</h2>
-   <p class="about-me">I am a sociologist with experience in ethnographic research, who is now on the software engineering path. Until I switch to Data Engineering, because I love to make dashboards and visualizations. Below is a video that I am currently watching on data engineering from my friends at freecodecamp.org!</p>
+   <p class="about-me"> Detail-oriented Public Health Advisor and transitioning Full-Stack Developer with a strong foundation in data systems, program coordination, and modern software engineering principles. Experienced in managing complex workflows within fast-paced health agencies and building responsive web applications using JavaScript, React, and Express. Proven ability to integrate advanced API functionalities and leverage version control systems to deploy scalable, user-centric solutions. I am also interested in Data Engineering, this is a video that I am currently watching on the topic from my friends at <a href="freecodecamp.org"!>freeCodeCamp.org</a>.</p>
    <div class="video-container">
     <iframe 
     width="560" 
@@ -47,11 +53,10 @@
    <section id="Experience">
    <h2 class="experience">Experience</h2>
    <ul>
-    <li>JavaScript</li>
-    <li>HTML</li>
-     <li>CSS</li>
-    <li>React</li>
-    <li>Node</li>
+    <p>Clearform (Clearformres.com) | Creator & Full-Stack Developer | 2026</p>
+    <li>Designed and deployed a responsive web application utilizing JavaScript, React, and Express to streamline and simplify digital form generation for end-users.</li>
+    <li>Integrated the ChatGPT API to power intelligent, automated data processing and dynamic text generation features.</li>
+     <li>Configured and managed continuous integration and deployment pipelines to successfully host and launch the live application via Vercel.</li>
    </ul>
    </section>
    <section id="Skills">
@@ -70,7 +75,7 @@
    <h2 class="connect">Connect</h2> 
    <div class="social-links">
    <ul>
-    <li><a href="https://github.com/Kurstin-Cyber/Kurstin-King-CTD-Intro26.2" target="blank" aria-label="GitHub">"<i class="fab fa-github">"</i></a></li> 
+    <li><a href="https://github.com/Kurstin-Cyber/Kurstin-King-CTD-Intro26.2" aria-label="GitHub"><i class="fab fa-github"></i></a></li> 
     <li><a href="https://www.linkedin.com/in/kurstin-king-59028448" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a></li>
    </ul>
    </div> 
@@ -98,6 +103,6 @@
         </h2>
         <ul></ul>
     </section>
-    <script src="js/index.js"></script>
+    <footer></footer><script src="js/index.js"></script>
 </body>
 </html>
