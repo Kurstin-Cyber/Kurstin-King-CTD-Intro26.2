@@ -1,12 +1,103 @@
+:root {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --link-color: #0066cc;
+    --section-bg: #f9f9f9;
+    --card-bg: #ffffff;
+    --card-text: #2c3e50;
+    --input-bg: #ffffff;
+    --input-text: #333333;
+    --heading-color: #2c3e50;
+    --subtext-color: #666666;
+    --border-color: #cccccc;
+
+}
+
+body.dark-mode {
+    --bg-color: #121212;
+    --text-color: #f0f0f0;
+    --link-color: #4da6ff;
+    --section-bg: #1e1e1e;
+    --card-bg: #2a2a2a;
+    --card-text: #ffffff;
+    --input-bg: #2d2d2d;
+    --input-text: #ffffff;
+    --heading-color: #ffffff;
+    --subtext-color: #b0b0b0;
+    --border-color: #444444;
+}
+
 
 body {
-    background-color: #f0f4f8;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     padding: 40px;
     margin: 0;
     font-family: "Open Sans", sans-serif;
-    color: #333;
     line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+a {
+    color: var(--link-color);
+}
+
+
+section {
+    background-color: var(--section-bg);
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding: 20px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px;
+    font-size: 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    min-height: 48px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#Projects li {
+    background-color: var(--card-bg);
+    color: var(--card-text);
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 5px solid #e67e22;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease, color 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#Projects li:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+    filter: brightness(1.05);
+}
+
+#menuToggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+
 .heading {
     font-family: "Tangerine", cursive;
     font-size: 48px;
@@ -46,9 +137,10 @@ h1 {
     font-family: "Tangerine", cursive;
     font-size: 80px;
     font-weight: 700;
-    color: #2c3e50;
+    color: var(--heading-color);
     text-align: center;
     margin-top: 50px;
+    transition: color 0.3s ease;
 }
 
 h2 {
@@ -67,15 +159,10 @@ p {
     letter-spacing: 0.5px;
 }
 
-section {
-    margin-top: 40px;
-    margin-bottom: 40px;
-    padding: 20px;
-    
-}
+
 
 #Connect {
-    display: flex !important;
+    display: flex;
     justify-content: center;
     gap: 60px;
     align-items: center;
@@ -128,7 +215,8 @@ section {
 
 #Experience p {
     margin: 5px 0;
-    color: #666;
+    color: var(--subtext-color);
+    transition: color 0.3s ease;
 }
 
 #Experience ul {
@@ -169,6 +257,7 @@ nav ul {
     display: flex;
     list-style-type: none;
     justify-content: space-around;
+    align-items: center;
     padding: 0;
     margin: 0;
 }
@@ -211,7 +300,7 @@ nav a:hover {
 }
 
 #messages {
-    display: flex !important;
+    display: flex;
     flex-direction: column;
     align-items: stretch;
     gap: 20px;
@@ -246,17 +335,7 @@ form label {
     margin-bottom: -12px;
 }
 
-input[type="text"],
-input[type="email"],
-textarea {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 14px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    min-height: 48px;
-}
+
 
 textarea {
     min-height: 120px;
@@ -264,7 +343,7 @@ textarea {
 }
 
 form button, input[type="submit"] {
-    background-color: #667e22;
+    background-color: #e67e22;
     color: #ffffff;
     font-family: "Open Sans", sans-serif;
     font-weight: 600;
@@ -293,25 +372,9 @@ input[type="submit"]:hover {
 
 }
 
-#Projects li {
-    background-color: #ffffff;
-    color: #2c3e50;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 600;
-    padding: 20px;
-    border-radius: 8px;
-    border-left: 5px solid #e67e22;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-    transition: transform 0.2 ease, box-shadow 0.2 ease;
-    width: 100%;
-    box-sizing: border-box;
-}
 
-#Projects li:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    background-color: #fafbfd;
-}
+
+
 
 @media only screen and (min-width: 768px) {
     .container {
@@ -325,10 +388,60 @@ input[type="submit"]:hover {
     #Projects li {
         width: calc(50% - 10px);
     }
+
+    #menuToggle {
+        display: none
+    }
+
+    #navLinks {
+        display: flex;
+        flex-direction: row;
+        position: static;
+        width: auto;
+        background: none;
+    }
 }
+
 
 @media only screen and (min-width: 1024px) {
     #Projects li {
-        width: calc(33.333% - 14px);
+        width: calc(33.333% -14px);
     }
 }
+
+@media only screen and (max-width: 767px) {
+    #menuToggle {
+        display: block;
+    }
+
+    #navLinks {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #2c3e50;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        padding: 10px 0;
+    }
+
+    #navLinks.active {
+        display: flex;
+
+    }
+
+    nav a {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 12px 0;
+    }
+
+    #darkModeToggle {
+        margin: 10px auto;
+        display: block;
+    }
+}
+
+
+
