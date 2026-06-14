@@ -1,5 +1,11 @@
 const BASE_URL ='https://api.open-meteo.com/v1/forecast'
 const GEO_URL = 'https://geocoding-api.open-meteo.com/v1/search';
+
+const windButton = document.getElementById("windButton");
+const windDisplay = document.getElementById("windDisplay");
+const tempButton = document.getElementById("tempButton");
+const tempDisplay = document.getElementById("tempDisplay");
+
 const footer = document.createElement("footer");
 const body = document.querySelector("body");
 body.appendChild(footer);
@@ -13,7 +19,11 @@ footer.appendChild(copyright);
 
 
 async function fetchCoordinates(cityName) {
-    const coordURL = `${GEO_URL}?name=${cityName}&count=1&language=en`;
+    if (!cityName) {
+        console.error("fetchCoordinates was called with an empty city name.");
+        return null;
+    }
+    const coordURL = `${GEO_URL}?name=${encodeURIComponent(cityName)}&count=1&language=en`;
     try {
         const response = await fetch(coordURL);
         if(!response.ok) 
@@ -22,33 +32,50 @@ async function fetchCoordinates(cityName) {
         const data = await response.json();
 
         if(!data.results || data.results.length === 0) {
-            throw new Error("No results found for that city");
+            throw new Error(`No results found for ${cityName}`);
         }
-        const {name, latitude, longitude} = data.results[0];
-        return {name, latitude, longitude};
-    } catch(error) {
-        console.error("Failed to fetch coordinates", error);
-    }
-};
-    
+        const result = data.results[0];
 
-const tempButton = document.getElementById("tempButton");
-const tempDisplay = document.getElementById("tempDisplay");
+        const {name, latitude, longitude} = result;
+        const state = result.admin1 || "";
+        return {name, latitude, longitude, state};
+    } catch (error) {
+        console.error("Failed to fetch coordinates", error);
+        return null;
+    }
+}
+
 
  tempButton.addEventListener('click', async (e) => {
     e.preventDefault();
-    const cityInput = document.getElementById("cityInput").value;
+    windDisplay.textContent = "";
+
+    const cityInputElement = document.getElementById("cityInput");
+    const cityInput = cityInputElement ? cityInputElement.value.trim() : "";
+    console.log("Captured input text:", cityInput);
+
+    if (cityInput === "") {
+        tempDisplay.textContent = "Please enter a city name.";
+        return;
+    }
+    
     try {
         const coords = await fetchCoordinates(cityInput);
-        fetchTemperature(coords.latitude, coords.longitude, coords.name);
+        if (coords) {
+            fetchTemperature(coords.latitude, coords.longitude, coords.name, coords.state);
+        } else {
+            tempDisplay.textContent = `Could not find results for ${cityInput}.`;
+        }
     } catch (error) {
-        tempDisplay.textContent = "Could not find that city.";
+        tempDisplay.textContent = "An error occurred while looking up the city.";
     }
- });
+});
 
- async function fetchTemperature(lat, lon, cityName) {
+
+
+ async function fetchTemperature(lat, lon, cityName, stateName) {
     
-    const tempUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m&temperature_unit=fahrenheit`;
+    const tempUrl =`${BASE_URL}?latitude=${lat}&longitude=${lon}&current=temperature_2m&temperature_unit=fahrenheit`;
    
     try {
         const response = await fetch(tempUrl);
@@ -59,8 +86,9 @@ const tempDisplay = document.getElementById("tempDisplay");
         console.log("Hourly Temperature Data:", data);
         const currentTemp = data.current.temperature_2m;
         const unit = data.current_units.temperature_2m;
+        const locationText = stateName ? `${cityName}, ${stateName}` : cityName;
 
-        tempDisplay.textContent =`Current Temperature in ${cityName}: ${currentTemp}${unit}`;
+        tempDisplay.textContent =`Current Temperature in ${locationText}: ${currentTemp}${unit}`;
     } catch (error) {
         console.error('Failed to fetch temperature data:', error);
         tempDisplay.textContent = "Failed to load temperature data.";
@@ -69,27 +97,36 @@ const tempDisplay = document.getElementById("tempDisplay");
     }
 
 
-
-
-const windButton = document.getElementById("windButton");
-const windDisplay = document.getElementById("windDisplay");
-
-    windButton.addEventListener('click',async (e) => {
+   windButton.addEventListener('click', async (e) => {
     e.preventDefault();
-    console.log("Windspeed button clicked!");
-    const cityInput = document.getElementById("cityInput").value;
-    try {
-        const coords = await fetchCoordinates(cityInput);
-        fetchWindspeed(coords.latitude, coords.longitude, coords.name);
+    tempDisplay.textContent = "";
 
-    } catch (error) {
-        windDisplay.textContent = "Could not find that city."
+    const cityInputElement = document.getElementById("cityInput");
+    const cityInput = cityInputElement ? cityInputElement.value.trim() : "";
+    console.log("Windspeed button clicked for:", cityInput);
+
+    
+    if (cityInput === "") {
+        windDisplay.textContent = "Please enter a city name.";
+        return;
     }
-    });
+    
+    try {
+      
+        const coords = await fetchCoordinates(cityInput);
+        if (coords) {
+            fetchWindspeed(coords.latitude, coords.longitude, coords.name, coords.state);
+        } else {
+            windDisplay.textContent = `Could not find results for ${cityInput}.`;
+        }
+    } catch (error) {
+        windDisplay.textContent = "Could not find that city.";
+    }
+});
 
 
-async function fetchWindspeed(lat, lon, cityName) {
-    const windUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=windspeed_10m&wind_speed_unit=mph`;
+async function fetchWindspeed(lat, lon, cityName, stateName) {
+    const windUrl =`${BASE_URL}?latitude=${lat}&longitude=${lon}&current=windspeed_10m&wind_speed_unit=mph`;
     try {
         const response = await fetch(windUrl);
         if(!response.ok) {
@@ -100,7 +137,8 @@ async function fetchWindspeed(lat, lon, cityName) {
 
         const currentWind = data.current.windspeed_10m;
         const unit = data.current_units.windspeed_10m;
-        windDisplay.textContent = `Current Windspeed in ${cityName}: ${currentWind} ${unit}`;
+        const locationText = stateName ? `${cityName}, ${stateName}` : cityName;
+        windDisplay.textContent = `Current Windspeed in ${locationText}: ${currentWind} ${unit}`;
        
     } catch (error) {
         console.error('Error fetching windspeed:', error);

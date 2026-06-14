@@ -1,7 +1,5 @@
-const footer = document.createElement("footer");
+const footer = document.querySelector("footer");
 const body = document.querySelector("body");
-
-body.appendChild(footer);
 
 const today = new Date();
 
@@ -9,14 +7,12 @@ const thisYear = today.getFullYear();
 
 const copyright = document.createElement("p");
 
-
-
 copyright.innerHTML = `&copy; Kurstin King ${thisYear}`
 
 footer.appendChild(copyright);
 
 
-const skills = ["JavaScript", "HTML", "CSS", "GitHub", "VS Code"];
+const skills = ["JavaScript", "React", "HTML5", "CSS3", "REST APIs", "ChatGPT API Integration", "GitHub", "VS Code"];
 const skillsSection = document.getElementById('Skills');
 
 const skillsList = skillsSection.querySelector('ul');
@@ -35,52 +31,26 @@ messageForm.addEventListener('submit', event => {
     const usersEmail= event.target.usersEmail.value;
     const usersMessage= event.target.usersMessage.value;
     
-    console.log(usersName, usersEmail, usersMessage);
+    const newMessageObj = {
+        id: Date.now().toString(),
+        name: usersName,
+        email: usersEmail,
+        text: usersMessage
 
-    const messageSection = document.getElementById("messages");
-    const messageList = messageSection.querySelector('ul');
+    };
 
-    
-    const newMessage = document.createElement("li");
+    const currentMessages = getSavedMessages();
+    currentMessages.push(newMessageObj);
+    saveMessages(currentMessages);
 
-    newMessage.innerHTML= `<a href= "mailto:${usersEmail}"> ${usersName}</a> : <span class="message-text">${usersMessage}</span>`;
+    renderMessage(newMessageObj);
 
-
-    const editButton = document.createElement("button");
-    editButton.innerText = "edit";
-    editButton.type = "button";
-    editButton.addEventListener('click', () => {
-        const messageSpan = newMessage.querySelector('.message-text');
-        const currentText = messageSpan.textContent;
-        const updatedText = prompt("Edit your message:", currentText);
-
-        if(updatedText !== null && updatedText.trim() !== "") {
-            messageSpan.textContent = updatedText;
-        }
-    });
-    newMessage.appendChild(editButton);
-    
-    const removeButton = document.createElement("button");
-    removeButton.innerText = "remove";
-    removeButton.type = "button";
-
-    removeButton.addEventListener('click', event => {
-        const entry = removeButton.parentNode;
-        entry.remove();
-
-        toggleMessagesSection();
-        
-    });
-    
-    newMessage.appendChild(removeButton);
-    messageList.appendChild(newMessage);
     messageForm.reset();
-
-   toggleMessagesSection();
-    
-   
+    toggleMessagesSection();
 
 });
+
+
 
 
  function toggleMessagesSection() { 
@@ -100,9 +70,69 @@ messageForm.addEventListener('submit', event => {
     }
 
     document.addEventListener("DOMContentLoaded", event =>{
+        const savedMessages = getSavedMessages();
+        savedMessages.forEach(msg => {
+            renderMessage(msg);
+        });
+
           toggleMessagesSection();
     });
 
+    function getSavedMessages() {
+        const saved = localStorage.getItem('userMessages');
+        return saved ? JSON.parse(saved) : [];
+    }
+
+    function saveMessages(messages) {
+        localStorage.setItem('userMessages', JSON.stringify(messages));
+    }
+
+    function renderMessage(msgObj) {
+        const messageSection = document.getElementById('messages');
+        const messageList = messageSection.querySelector('ul');
+        const newMessage = document.createElement('li');
+        const messageDisplay = document.createElement('span');
+        messageDisplay.className = 'message-text';
+        messageDisplay.innerHTML = `<a href=mail:${msgObj.email}">${msgObj.name}</a> wrote: <span>${msgObj.text} </span>`;
+        newMessage.appendChild(messageDisplay);
+
+        const editButton = document.createElement('button');
+        editButton.innerText = 'edit';
+        editButton.type = 'button';
+        editButton.addEventListener('click', () => {
+            const messageSpan = newMessage.querySelector('.message-text');
+            const currentText = messageSpan.textContent;
+            const updatedText = prompt('Edit your message', currentText);
+
+            if(updatedText !== null && updatedText.trim() !== "") {
+                messageSpan.textContent = updatedText;
+
+                let currentMessages = getSavedMessages();
+                const index = currentMessages.findIndex(m => m.id === msgObj.id);
+                if (index !== -1) {
+                    currentMessages[index].text = updatedText;
+                    saveMessages(currentMessages);
+                }
+            }
+        });
+        newMessage.appendChild(editButton);
+        
+            const removeButton = document.createElement("button");
+            removeButton.innerText = "remove";
+            removeButton.type = "button";
+            removeButton.addEventListener('click', () => {
+                newMessage.remove();
+
+                let currentMessages = getSavedMessages();
+                currentMessages = currentMessages.filter(m => m.id !== msgObj.id);
+                saveMessages(currentMessages);
+
+                toggleMessagesSection();
+
+            });
+            newMessage.appendChild(removeButton);
+            messageList.appendChild(newMessage);
+    }
 
  fetch('https://api.github.com/users/Kurstin-Cyber/repos')
 
@@ -119,7 +149,19 @@ messageForm.addEventListener('submit', event => {
 
         for(let i = 0;  i < repositories.length; i++){
         const project = document.createElement('li');
-        project.innerText = repositories[i].name;
+        const projectLink = document.createElement('a');
+        projectLink.href = repositories[i].html_url;
+        projectLink.target = "_blank";
+        projectLink.innerText = repositories[i].name;
+
+        project.appendChild(projectLink);
+        if(repositories[i].description) {
+            const desc = document.createElement('p');
+            desc.innerText = repositories[i].description;
+            desc.style.fontSize = '0.9rem';
+            project.appendChild(desc);
+        }
+        
         projectList.appendChild(project);
     }
         console.log(repositories);
@@ -138,4 +180,36 @@ messageForm.addEventListener('submit', event => {
     });
 
 
-    
+    const darkModeToggle = document.getElementById('darkModeToggle');
+
+    if(localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+        if(darkModeToggle) darkModeToggle.innerText ="Light Mode";
+    }
+    if(darkModeToggle) {
+        darkModeToggle.addEventListener('click', ()=>{
+            document.body.classList.toggle('dark-mode');
+            if(document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+                darkModeToggle.innerText = 'Light Mode';
+            } else {
+                localStorage.setItem('theme', 'light');
+                darkModeToggle.innerText = 'Dark Mode';
+            }
+        })
+    }
+
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    if(menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.addEventListener('click', (event) =>{
+            if(event.target.tagName === 'A') {
+                navLinks.classList.remove('active');
+            }
+        });
+    }
